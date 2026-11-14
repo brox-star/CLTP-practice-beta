@@ -39,7 +39,8 @@ void autocomplete(trie_node_t* root, char* prefix) {
 }
 
 static void recurse_node(trie_node_t* root, char* word, size_t pos, bool* found_first) {
-    if (root->isWord) {
+    if (root) {
+	if (root->isWord) {
         if (!*found_first) {
             printf("%s", word);
         } else {
@@ -53,6 +54,7 @@ static void recurse_node(trie_node_t* root, char* word, size_t pos, bool* found_
         recurse_node(root->children[i], word, pos + 1, found_first);
     }
     *(word+pos) = '\0';
+    }
 }
 
 /**
